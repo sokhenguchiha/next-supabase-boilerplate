@@ -9,7 +9,7 @@ import { useSearchParams } from "next/navigation";
 
 export default function Page() {
 	const params = useSearchParams();
-	const next = params.get("next");
+	const next = params.get("next") || "";
 	const handleLoginWithOAuth = (provider: "github" | "google") => {
 		const supabase = supabaseBrowser();
 		supabase.auth.signInWithOAuth({
@@ -21,7 +21,7 @@ export default function Page() {
 	};
 
 	return (
-		<div className="flex items-center justify-center w-full h-screen">
+		<div className="flex items-center justify-center w-full h-[70vh]">
 			<div className=" w-96 rounded-md border p-5 space-y-5 relative bg-slate-900">
 				<div className="flex items-center gap-2">
 					<KeyRound />

@@ -40,13 +40,15 @@ create table
 
 ```sql
 begin
+
   insert into public.profiles(id,email,display_name,image_url)
   values(
     new.id,
     new.raw_user_meta_data ->> 'email',
-    COALESCE(NULLIF(new.raw_user_meta_data ->> 'user_name', ''), NULLIF(new.raw_user_meta_data ->> 'name', '')),
+    COALESCE(new.raw_user_meta_data ->> 'user_name',new.raw_user_meta_data ->> 'name'),
     new.raw_user_meta_data ->> 'avatar_url'
   );
   return new;
+
 end;
 ```
