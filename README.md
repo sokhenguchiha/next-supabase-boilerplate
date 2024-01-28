@@ -24,8 +24,8 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+-   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
@@ -34,3 +34,33 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Profile table
+
+```sql
+create table
+  public.profiles (
+    id uuid not null,
+    created_at timestamp with time zone not null default now(),
+    email text not null,
+    display_name text null,
+    image_url text null,
+    constraint profiles_pkey primary key (id),
+    constraint profiles_id_fkey foreign key (id) references auth.users (id) on update cascade on delete cascade
+  ) tablespace pg_default;
+```
+
+## Auth Trigger Function
+
+```sql
+begin
+  insert into public.profiles(id,email,display_name,image_url)
+  values(
+    new.id,
+    new.raw_user_meta_data ->> 'email',
+    COALESCE(NULLIF(new.raw_user_meta_data ->> 'user_name', ''), NULLIF(new.raw_user_meta_data ->> 'name', '')),
+    new.raw_user_meta_data ->> 'avatar_url'
+  );
+  return new;
+end;
+```
