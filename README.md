@@ -60,3 +60,9 @@ create trigger create_user_on_signup
 after insert on auth.users for each row
 execute function create_user_on_signup ();
 ```
+
+### Remove Trigger
+
+```sql
+drop trigger create_user_on_signup on auth.users;
+```
