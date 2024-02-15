@@ -1,3 +1,4 @@
+import Price from "@/components/subscription/price";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
@@ -16,8 +17,12 @@ export default function page() {
 					<Link href="/profile" className=" underline">
 						/profile
 					</Link>
+					<Link href="/subscription" className=" underline">
+						/subscription
+					</Link>
 				</div>
 			</div>
+			<Price />
 			<div className=" border-t pt-10">
 				<h1 className="text-xl font-bold">
 					Thank you cloning my boilerplate project.
