@@ -6,7 +6,7 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
-export interface Database {
+export type Database = {
   public: {
     Tables: {
       profiles: {
@@ -35,9 +35,41 @@ export interface Database {
           {
             foreignKeyName: "profiles_id_fkey"
             columns: ["id"]
-            isOneToOne: true
+            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
+          }
+        ]
+      }
+      subscription: {
+        Row: {
+          created_at: string
+          customer_id: string | null
+          email: string
+          end_at: string | null
+          subscription_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          customer_id?: string | null
+          email: string
+          end_at?: string | null
+          subscription_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          customer_id?: string | null
+          email?: string
+          end_at?: string | null
+          subscription_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_subscription_email_fkey"
+            columns: ["email"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["email"]
           }
         ]
       }
