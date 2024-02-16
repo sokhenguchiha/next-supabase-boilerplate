@@ -16,6 +16,7 @@ export default function Price() {
 				"Enhanced collaboration",
 			],
 			amount: 10,
+			priceId: "price_1OkLyMBjTkC65mKFFh3g34Js",
 		},
 		{
 			title: "Pro",
@@ -29,6 +30,7 @@ export default function Price() {
 				"Enhanced collaboration",
 			],
 			amount: 20,
+			priceId: "price_1OkLyeBjTkC65mKFrDgRUUuh",
 		},
 		{
 			title: "Enterpise",
@@ -42,6 +44,7 @@ export default function Price() {
 				"Enhanced collaboration",
 			],
 			amount: 100,
+			priceId: "price_1OkLypBjTkC65mKFP6QPJHnF",
 		},
 	];
 
