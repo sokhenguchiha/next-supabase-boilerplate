@@ -21,7 +21,7 @@ export default function Checkout({ priceId }: { priceId: string }) {
 				await checkout(
 					user.email,
 					priceId,
-					location.origin + "/success"
+					location.origin + location.pathname
 				)
 			);
 			const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK!);
