@@ -2,6 +2,7 @@ import { CheckCircle2 } from "lucide-react";
 import React from "react";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
+import Checkout from "./Checkout";
 
 export default function Price() {
 	const prices = [
@@ -87,7 +88,7 @@ export default function Price() {
 									);
 								})}
 							</div>
-							<Button className="w-full">Getting Started</Button>
+							<Checkout priceId={price.priceId} />
 						</div>
 					);
 				})}
