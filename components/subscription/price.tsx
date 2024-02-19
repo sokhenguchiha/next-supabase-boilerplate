@@ -1,10 +1,13 @@
+"use client";
 import { CheckCircle2 } from "lucide-react";
 import React from "react";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import Checkout from "./Checkout";
+import useUser from "@/app/hook/useUser";
 
 export default function Price() {
+	const { data: user, isLoading } = useUser();
 	const prices = [
 		{
 			title: "Hobby",
@@ -48,6 +51,12 @@ export default function Price() {
 			priceId: "price_1OkLypBjTkC65mKFP6QPJHnF",
 		},
 	];
+	if (isLoading) {
+		return <></>;
+	}
+	if (user?.subscription?.customer_id) {
+		return <></>;
+	}
 
 	return (
 		<div>

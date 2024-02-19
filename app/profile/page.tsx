@@ -1,9 +1,10 @@
 import React from "react";
+import Subscription from "./components/Subscription";
 
 export default function Page() {
 	return (
 		<div>
-			<h1>Profile</h1>
+			<Subscription />
 		</div>
 	);
 }
